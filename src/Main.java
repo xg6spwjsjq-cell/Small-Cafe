@@ -1,13 +1,26 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-  //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-  // to see how IntelliJ IDEA suggests fixing it.
-  IO.println(String.format("Hello and welcome!"));
+public class Main {
+    public static void main(String[] args) {
+        MenuItem m1 = new MenuItem("C-01", "Espresso", 9.0, "coffee");
+        MenuItem m2 = new MenuItem("C-02", "Cappuccino", 13.5, "coffee");
+        MenuItem m3 = new MenuItem("D-01", "Cheesecake", 16.0, "dessert");
 
-  for (int i = 1; i <= 5; i++) {
-    //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-    // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-    IO.println("i = " + i);
-  }
+        CafeCustomer customer = new CafeCustomer(100, "Julia", "Mazur", "j.mazur@mail.pl");
+
+        Order order = new Order(customer);
+        order.addItem(m1);
+        order.addItem(m2);
+        order.addItem(m3);
+
+        System.out.println(customer);
+        System.out.println(order);
+        System.out.println("Total value: " + order.calculateTotal());
+        System.out.println("Number of items: " + order.countItems());
+        System.out.println("Number of products created in the system: " + MenuItem.getProductCount());
+
+        MenuItem espressoCopy = new MenuItem("C-01", "Espresso duplicate", 9.0, "coffee");
+        System.out.println("Are the products equal? " + m1.equals(espressoCopy));
+
+        order.markAsPaid();
+        System.out.println(order);
+    }
 }
